@@ -49,7 +49,7 @@ while opcao != "x":
       dados_ciclistas.append(dados)
       print(dados_ciclistas)
       
-      #____________________________criando arquivo que possui sublistas dos usuarios________________________________________________________
+      #____________________________criando arquivo que possui listas dos dados de cada usuario_____________________________________
       arquivo = open("ciclistas.txt","w")
       for x in dados_ciclistas:
           print(x,file = arquivo)
@@ -57,13 +57,13 @@ while opcao != "x":
            
    # opçao de loguin
    elif opcao == "2":
-      #__________Criando arquivo que contem os dados do usuario como listas_______
+      #__________Criando arquivo que contem os dados do usuario percorridos_______
       arq = open("dados_loguin.ewe","w")
       for y in dados_ciclistas:
           for w in y:
               print(w,file = arq)
       arq.close()
-      #__________Criando arquivo que contem os itens das sublistas listados para verificação do for e verificando pela função loguin_______
+      #__________Criando arquivo que contem os itens das sublistas listados para verificação do for e verificando pela função loguin__
       print("loguin de usuario")
       arq = open("dados_loguin.ewe","r")
       nome_cpf = arq.read()
