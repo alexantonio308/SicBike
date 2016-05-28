@@ -3,10 +3,12 @@ opcao = ""
 dados_ciclistas = []
 gerador_matricula = 1000
 
-
 while opcao != "x":
-   biblioteca.clear()
    biblioteca.inicial()
+   if len(dados_ciclistas) > 0:
+      print("sua matricula é ",gerador_matricula,"decore para logar de acordo com o usuario")
+   opcao = input("digite sua opção:")
+   biblioteca.clear()
    modalidade = []
    nome = []
    email = []
@@ -14,13 +16,7 @@ while opcao != "x":
    cpf = []
    rg = []
    dataNascimento = []
-   contador_MATRICULA = []
-   if len(dados_ciclistas) > 0:
-      print("sua matricula é ",gerador_matricula,"decore para logar de acordo com o usuario")
-   opcao = input("digite sua opção:")
-   #biblioteca.clear() limpa a tela
-   biblioteca.clear()
-   
+   contador = []
    if opcao == "1":
       print("Cadastro Ciclista\n")
       print("*1 Master\n*2 Junior\n*3 Turismo\n*4 Peso pesado")
@@ -37,36 +33,32 @@ while opcao != "x":
          ("opção invalida")
          
       biblioteca.clear()    
-      print("Dados do Usuario\n")
+      print("\ndados do usuario\n")
       nome.append(input("digite seu nome:"))
       email.append(input("Digite seu email:"))
       celular.append(input("digite seu numero de celular ou telefone:"))
 
       biblioteca.clear()
-      print("\nDados Pessoais\n")
+      print("\nDados pessoais\n")
       cpf.append(input("digite seu cpf:"))
       rg.append(input("digite seu RG:"))
       dataNascimento.append(input("digite sua data de nascimento:"))
       #-------------------------------------------------------------------------
       gerador_matricula += 1
-      contador_MATRICULA.append(gerador_matricula)
-      dados = modalidade + nome + email + celular + cpf + rg + dataNascimento + contador_MATRICULA
+      contador.append(gerador_matricula)
+      dados = modalidade + nome + email + celular + cpf + rg + dataNascimento + contador
       dados_ciclistas.append(dados)
       print(dados_ciclistas)
       
       arquivo = open("ciclistas.txt","w")
-      print(contador_MATRICULA,file = arquivo)
-      for x in dados_ciclistas:
-          print(x,file = arquivo)
+      biblioteca.listar_lista(dados_ciclistas,contador,arquivo)
       arquivo.close()
       
       
       #opçao de loguin
    elif opcao == "2":
       arq = open("dados_loguin.ewe","w")
-      for dado_ciclista in dados_ciclistas:
-          for w in dado_ciclista:
-              print(w,file = arq)
+      biblioteca.listar_lista2(dados_ciclistas,contador,arq)
       arq.close()
       #__________Criando arquivo que contem os itens das sublistas listados para verificação do for e verificando pela função loguin__
       print("loguin de usuario")
@@ -77,21 +69,37 @@ while opcao != "x":
       if matricula in nome_matri and cpf in nome_matri:
          biblioteca.clear() 
          print("longado")
-         print("[1] Apagar cadastro")
-         print("[2] Imprimir cadastro")
-         escolha = input("escolha sua opção:")
-         if escolha == "1":
-            verificacao = input("realmente deseja apagar sua matricula?[s/n]")
-            if verificacao == "s":
-               del dados_ciclistas[int(matricula)-int(1001)]
-               arquivo = open("ciclistas.txt","w")
-               for x in dados_ciclistas:
-                  print(x,file = arquivo)
-               arquivo.close()
+         while escolha != "x":
+            print("[1] Apagar cadastro")
+            print("[2] Gerar arquivo de Matricula")
+            print("[3] Verificar matricula")
+            print("[x] Voltar")
+            escolha = input("escolha sua opção:")
+            if escolha == "1":
+               verificacao = input("realmente deseja apagar sua matricula?[s/n]")
+               if verificacao == "s":
+                  del dados_ciclistas[int(matricula)-int(1001)]
+                  arquivo = open("ciclistas.txt","w")
+                  biblioteca.listar_lista(dados_ciclistas,contador,arquivo)
+                  arquivo.close()
 
-     
+            elif escolha == "2":
+               arquiv = open("Matricula.txt","w")
+               biblioteca.imprimir_matricula_ciclista(dados_ciclistas[int(matricula)-int(1001)],arquiv)
+               arquiv.close()
+               biblioteca.clear()
+               print("arquivo de Matricula gerado")
+
+            elif escolha == "3":
+               biblioteca.clear()
+               biblioteca.verificar_matricula(dados_ciclistas[int(matricula)-int(1001)])
+            else:
+               print("opção invalida")
+
+   else:
+      print("opção invalida\n")
 
 
-print ("\n" * 130) 
+biblioteca.clear() 
 print("Saindo do sistema...")
    
