@@ -7,10 +7,6 @@ gerador_matricula = 1000
 while opcao != "x":
    biblioteca.clear()
    biblioteca.inicial()
-   if len(dados_ciclistas) > 0:
-      print("sua matricula é ",gerador_matricula,"decore para logar de acordo com o usuario")
-   opcao = input("digite sua opção:")
-   biblioteca.clear()
    modalidade = []
    nome = []
    email = []
@@ -18,7 +14,13 @@ while opcao != "x":
    cpf = []
    rg = []
    dataNascimento = []
-   contador = []
+   contador_MATRICULA = []
+   if len(dados_ciclistas) > 0:
+      print("sua matricula é ",gerador_matricula,"decore para logar de acordo com o usuario")
+   opcao = input("digite sua opção:")
+   #biblioteca.clear() limpa a tela
+   biblioteca.clear()
+   
    if opcao == "1":
       print("Cadastro Ciclista\n")
       print("*1 Master\n*2 Junior\n*3 Turismo\n*4 Peso pesado")
@@ -35,25 +37,25 @@ while opcao != "x":
          ("opção invalida")
          
       biblioteca.clear()    
-      print("\ndados do usuario\n")
+      print("Dados do Usuario\n")
       nome.append(input("digite seu nome:"))
       email.append(input("Digite seu email:"))
       celular.append(input("digite seu numero de celular ou telefone:"))
 
       biblioteca.clear()
-      print("\nDados pessoais\n")
+      print("\nDados Pessoais\n")
       cpf.append(input("digite seu cpf:"))
       rg.append(input("digite seu RG:"))
       dataNascimento.append(input("digite sua data de nascimento:"))
       #-------------------------------------------------------------------------
       gerador_matricula += 1
-      contador.append(gerador_matricula)
-      dados = modalidade + nome + email + celular + cpf + rg + dataNascimento + contador
+      contador_MATRICULA.append(gerador_matricula)
+      dados = modalidade + nome + email + celular + cpf + rg + dataNascimento + contador_MATRICULA
       dados_ciclistas.append(dados)
       print(dados_ciclistas)
       
       arquivo = open("ciclistas.txt","w")
-      print(contador,file = arquivo)
+      print(contador_MATRICULA,file = arquivo)
       for x in dados_ciclistas:
           print(x,file = arquivo)
       arquivo.close()
