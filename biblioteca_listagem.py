@@ -3,9 +3,6 @@ def salvar_arquivo(dados):
    for x in range(len(dados)):
       print(dados[x],file = arquivo)
    arquivo.close() 
-
-def clear():
-    print ("\n" * 130)
    
 def listar_lista(lista,contador,arquivo):
     for x in range(len(lista)):
