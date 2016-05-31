@@ -24,5 +24,6 @@ while opcao != "x":
         n_matricula = input("digite sua matricula:") 
         usuario = arq.matricula_read(n_matricula)
         arq.listar_matricula(usuario)
+        tel.press()
 
     
