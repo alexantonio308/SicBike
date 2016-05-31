@@ -1,11 +1,11 @@
 import pickle
 def conta_matricula(contador):
-    arq = open("conta.txt","wb")
+    arq = open("conta.ewe","wb")
     pickle.dump(contador,file = arq)
     arq.close()
 
 def leito_cotador(contador):
-    arquivo = open("conta.txt","rb")
+    arquivo = open("conta.ewe","rb")
     contador = pickle.load(arquivo)
     return contador
 
